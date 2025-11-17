@@ -8,7 +8,7 @@ This repository contains detailed guides and tutorials on various Python topics,
 
 ## 📚 Topics Covered
 
-### 1. [Python Installation & Package Management](./python-installation-management.md)
+### 1. [Python Installation & Package Management](./01-python-installation-management.md)
 
 Learn how to properly install and manage Python versions and packages on macOS. This comprehensive guide covers:
 
@@ -27,6 +27,32 @@ Learn how to properly install and manage Python versions and packages on macOS. 
 - Modern tooling with UV
 
 **Suitable for:** Beginners to intermediate Python developers
+
+---
+
+### 2. [Understanding Python Code Organization](./02-understanding-python-code-organization.md)
+
+Master the fundamentals of how Python code is organized, from simple scripts to complex packages. This guide demystifies confusing terminology and teaches you when and how to use each concept.
+
+- Your first Python program and when to use imports
+- Built-in functions vs Standard Library vs third-party packages
+- Understanding scripts, modules, and packages
+- The `__name__` and `if __name__ == '__main__':` pattern
+- How Python executes code and why functions aren't called automatically
+- Using `__init__.py` and organizing packages
+- Finding and installing packages from PyPI
+- Import patterns and best practices
+- Binary vs pure Python modules
+
+**Key Concepts:**
+- Script vs module (same file, different usage)
+- How Python executes code line by line
+- Import patterns (`import`, `from`, aliases)
+- Package structure and organization
+- PyPI and pip installation workflow
+- Standard naming conventions
+
+**Suitable for:** Complete beginners to intermediate Python developers
 
 ---
 
@@ -75,7 +101,6 @@ Questions or suggestions? Open an issue in this repository.
 
 ---
 
-**Last Updated:** November 2024
+**Last Updated:** November 2025
 
 Happy Learning! 🐍
-
