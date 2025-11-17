@@ -1,6 +1,6 @@
 # Understanding Python Code Organization
 
-## Quick Summary (TL;DR)
+## Quick Summary
 
 | What | Description | Example | Need Import? |
 |------|-------------|---------|--------------|
