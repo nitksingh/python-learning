@@ -87,6 +87,62 @@ A comprehensive, practical reference covering all Python fundamentals you need f
 
 ---
 
+### 4. [Object-Oriented Programming in Python](./04-object-oriented-programming.md)
+
+Master Object-Oriented Programming (OOP) to write organized, maintainable, and scalable code. This comprehensive guide covers OOP fundamentals through advanced patterns with real-world applications.
+
+- **OOP Fundamentals**: Classes, objects, attributes, methods, `__init__`, `self`
+- **Class vs Instance**: Attributes, class methods, static methods, when to use each
+- **Special Methods**: `__str__`, `__repr__`, `__eq__`, `__len__`, `__getitem__`, and more
+- **Inheritance**: Single inheritance, `super()`, method overriding, extending parent classes
+- **Polymorphism**: Method overriding, duck typing, same interface different behavior
+- **Encapsulation**: Private attributes, properties, getters/setters, validation
+- **Design Patterns**: Factory pattern, Singleton pattern, composition over inheritance
+- **Real-World Examples**: Bank account system, employee management, GUI components, vehicle systems
+- **System Design Problems**: Complete implementations of LRU Cache, Parking Lot, Library Management System
+- **Best Practices**: Single Responsibility, composition over inheritance, meaningful names
+- **When to Use OOP**: OOP vs functions comparison, clear guidelines
+
+**Key Concepts:**
+- Understanding when OOP provides value over functions
+- Building flexible systems with composition
+- Implementing common design patterns
+- System design interview preparation
+- Writing maintainable object-oriented code
+- Real programmer patterns from production systems
+
+**Suitable for:** Beginners learning OOP, intermediate developers strengthening design skills, anyone preparing for technical interviews
+
+---
+
+### 5. [Web Development with Python](./05-web-development-python.md) *(Coming Soon)*
+
+Learn to build modern web applications and REST APIs with Python. This comprehensive guide covers web frameworks, API development, and deployment strategies.
+
+- **FastAPI Fundamentals**: Building REST APIs, request/response handling, path parameters, query parameters
+- **Data Validation**: Pydantic models, automatic validation, serialization
+- **Database Integration**: SQLAlchemy ORM, database connections, CRUD operations
+- **Authentication & Security**: JWT tokens, OAuth2, password hashing, CORS
+- **Flask Basics**: Routes, templates, blueprints, sessions
+- **API Design Best Practices**: RESTful principles, versioning, documentation
+- **Async Web Development**: Async endpoints, background tasks, WebSockets
+- **Testing Web Applications**: pytest for APIs, test clients, mocking
+- **Deployment**: Docker, environment variables, production configurations
+- **Real-World Projects**: Blog API, Todo application, E-commerce backend
+
+**Key Concepts:**
+- Building production-ready REST APIs
+- Request handling and response formatting
+- Database integration patterns
+- Authentication and authorization
+- API documentation (OpenAPI/Swagger)
+- Error handling and validation
+- Deployment strategies
+
+**Suitable for:** Developers wanting to build web applications, API development, backend engineering, full-stack development
+
+---
+
 ## 🎯 How to Use This Repository
 
 1. **Browse Topics**: Navigate to the topic you want to learn about
@@ -96,16 +152,76 @@ A comprehensive, practical reference covering all Python fundamentals you need f
 
 ## 🔮 Upcoming Topics
 
-Future topics planned for this repository:
+### Topics 6-7 (Planned and In Development)
 
-- Python testing with pytest
-- Python project structure and best practices
-- Type hints and static type checking
-- Async/await and concurrency
-- Working with databases
-- REST APIs with FastAPI
-- Python packaging and distribution
-- Performance optimization
+**Topic 6: Working with Files, Data, and Databases**
+- File I/O in depth (reading, writing, modes, binary files)
+- Working with CSV and Excel files
+- JSON and data serialization (JSON, pickle, YAML)
+- Working with APIs and HTTP requests
+- File paths and directory operations (os, pathlib)
+- Context managers and the `with` statement
+- **Database Fundamentals**: SQLite basics, SQL queries, database design
+- **ORMs**: Introduction to SQLAlchemy and database abstraction
+- Data persistence patterns
+
+**Topic 7: Advanced Python Features**
+- Decorators (function and class decorators)
+- Generators and `yield` keyword
+- Context managers (creating custom ones)
+- Advanced comprehensions and generator expressions
+- `*args` and `**kwargs` in depth
+- Closures and scope rules
+- Lambda functions and functional programming
+- **Type Hints and Static Type Checking**: Type annotations, mypy, generics
+- **Async/Await and Concurrency**: asyncio, async patterns, threading vs multiprocessing
+- **Performance Optimization**: Profiling, optimization techniques, memory management
+
+**Topic 8: Testing, Packaging, and Professional Python**
+- Unit testing with pytest
+- Test-driven development (TDD) basics
+- Mocking and fixtures
+- Code organization and project structure best practices
+- Writing testable code
+- Debugging techniques and tools
+- Documentation with docstrings and Sphinx
+- **Python Packaging**: Creating distributable packages, setup.py, pyproject.toml, publishing to PyPI
+- Virtual environments in production
+- CI/CD basics for Python projects
+
+### 🤖 AI/ML Career Pathway
+
+For engineers interested in transitioning to AI/ML roles (MLOps, ML Platform Engineering, LLM Applications), we're developing a separate comprehensive guide:
+
+**[AI Career Pathway Guide for Engineers](./AI-Career-Pathway-Guide.md)**
+
+This specialized pathway is designed for experienced software engineers and data engineers who want to move into booming AI roles like:
+- MLOps Engineer
+- ML Platform Engineer  
+- LLM Application Engineer
+- AI Solutions Architect
+
+The guide includes a complete 3-6 month learning roadmap, focusing on practical skills without requiring deep math/statistics background. Perfect for engineers who want to leverage their existing development expertise to transition into high-demand AI infrastructure and application roles.
+
+---
+
+### 📊 Future Career Pathways
+
+Based on community interest, we may develop additional specialized career pathways:
+
+**Data Science Career Pathway** *(Potential Future Addition)*
+
+For those interested in data analysis, statistical modeling, and becoming data scientists. This would be a separate pathway from the AI/ML engineering track above, focusing on:
+- Data analysis and visualization (NumPy, Pandas, Matplotlib, Seaborn)
+- Statistical analysis and hypothesis testing
+- Exploratory Data Analysis (EDA)
+- Feature engineering and model training
+- scikit-learn for model development
+- Jupyter notebooks and data storytelling
+
+**Target Roles:** Data Scientist, Data Analyst, Research Scientist, Quantitative Analyst
+
+**Note:** This differs from the AI/ML pathway above, which focuses on building and deploying ML systems (infrastructure/engineering) rather than analyzing data and creating models (research/analysis).
 
 ## 💡 Prerequisites
 
