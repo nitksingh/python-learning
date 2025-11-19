@@ -56,6 +56,37 @@ Master the fundamentals of how Python code is organized, from simple scripts to 
 
 ---
 
+### 3. [Python Essentials: Complete Reference Guide](./03-python-essentials-reference.md)
+
+A comprehensive, practical reference covering all Python fundamentals you need for daily coding and technical interviews. This guide includes extensive examples, common patterns, and real-world applications.
+
+- **Operators**: Arithmetic, comparison, logical, with clear examples (/, //, %, etc.)
+- **Data Types**: Detailed coverage of str, list, tuple, dict, set with interview problems
+- **Control Flow**: if/elif/else, for loops (7+ forms), while loops, comprehensions
+- **Functions**: Return values, Python vs Java comparison, type hints, docstrings
+- **Keywords**: pass, break, continue, return - when and where to use each
+- **Built-in Functions**: Complete reference with examples (print, len, map, filter, zip, enumerate, etc.)
+- **String & List Operations**: Methods with input/output examples and slicing details
+- **Dictionary & Set Operations**: CRUD operations, common interview patterns
+- **Standard Library Modules**: collections, itertools, datetime, os, pathlib, json, re, random, math
+- **Exception Handling**: Common exceptions, try-except patterns, how to identify errors
+- **List Comprehensions**: From basic to advanced with practical examples
+- **Interview Patterns**: Two-pointer, sliding window, frequency counting, binary search
+- **Time Complexity**: Quick reference table for common operations
+
+**Key Concepts:**
+- Comprehensive operator examples with edge cases
+- Data type usage patterns and when to use each
+- 25+ common interview problems with solutions
+- Control flow constructs with clear examples
+- Exception handling best practices
+- Code patterns used in real companies
+- Quick reference for experienced developers at the top
+
+**Suitable for:** Beginners learning Python, developers preparing for coding interviews, anyone needing a comprehensive Python reference
+
+---
+
 ## 🎯 How to Use This Repository
 
 1. **Browse Topics**: Navigate to the topic you want to learn about
