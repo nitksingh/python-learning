@@ -1130,6 +1130,64 @@ print(safe_divide(10, 2))   # 5.0
 print(safe_divide(10, 0))   # Error: Division by zero, None
 print(safe_divide(10, "2")) # Error: Invalid types, None
 
+# Using raise - Re-raising exceptions
+# When you catch an exception but can't fix it, use 'raise' to let caller handle it
+
+def validate_age(age):
+    """Validates age and raises exception if invalid."""
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    if age > 150:
+        raise ValueError("Age seems unrealistic")
+    return age
+
+def create_user(name, age):
+    """Creates user with validated age."""
+    try:
+        validated_age = validate_age(age)  # May raise ValueError
+        return {"name": name, "age": validated_age}
+    except ValueError as e:
+        print(f"Validation failed: {e}")
+        # Log the error and re-raise for caller to handle
+        raise  # Re-raises the same exception
+
+# Caller code
+try:
+    user = create_user("Alice", -5)
+except ValueError as e:
+    print(f"Caller caught: {e}")
+    # Now caller knows exactly what went wrong!
+
+# Output:
+# Validation failed: Age cannot be negative
+# Caller caught: Age cannot be negative
+
+# Key Rules for raise:
+# 1. raise looks for matching except in SAME function first
+# 2. If found → executes that except block, function continues
+# 3. If NOT found → exception propagates to caller
+# 4. Exception "bubbles up" call stack until caught
+# 5. If never caught → program crashes with error message
+# 6. Use bare 'raise' (no exception) to re-raise current exception
+# 7. Use 'raise ExceptionType("message")' to raise new exception
+
+# Example showing exception bubbling up
+def level3():
+    raise ValueError("Error at level 3")
+    # No except - goes to caller
+
+def level2():
+    level3()  # No except - passes exception up
+
+def level1():
+    try:
+        level2()
+    except ValueError as e:
+        print(f"Caught at level 1: {e}")  # Finally caught here!
+
+level1()
+# Output: Caught at level 1: Error at level 3
+
 # How to know which exception to catch?
 # 1. Run the code and see what error occurs
 # 2. Read Python documentation
