@@ -115,31 +115,38 @@ Master Object-Oriented Programming (OOP) to write organized, maintainable, and s
 
 ---
 
-### 5. [Web Development with Python](./05-web-development-python.md) *(Coming Soon)*
+### 5. [Web Development, APIs & Databases](./05-web-apis-databases.md) *(Coming Soon)*
 
-Learn to build modern web applications and REST APIs with Python. This comprehensive guide covers web frameworks, API development, and deployment strategies.
+Build modern web applications, REST APIs, and data-driven systems with Python. This comprehensive guide combines web development, database integration, and API design - the essential skills for backend development.
 
-- **FastAPI Fundamentals**: Building REST APIs, request/response handling, path parameters, query parameters
+- **File I/O Fundamentals**: Reading, writing, file modes, binary files, context managers (`with`)
+- **Working with Data Formats**: CSV, JSON, Excel files, YAML
+- **File Paths & Directories**: os, pathlib, file operations, directory traversal
+- **HTTP & External APIs**: requests library, consuming REST APIs, API authentication
+- **Database Fundamentals**: SQLite basics, SQL queries, database design, relationships
+- **SQLAlchemy ORM**: Models, sessions, queries, migrations, relationships
+- **FastAPI**: Building REST APIs, request/response handling, path/query parameters
 - **Data Validation**: Pydantic models, automatic validation, serialization
-- **Database Integration**: SQLAlchemy ORM, database connections, CRUD operations
 - **Authentication & Security**: JWT tokens, OAuth2, password hashing, CORS
-- **Flask Basics**: Routes, templates, blueprints, sessions
-- **API Design Best Practices**: RESTful principles, versioning, documentation
+- **Flask Basics**: Routes, templates, blueprints, sessions (alternative to FastAPI)
+- **API Design Best Practices**: RESTful principles, versioning, documentation (OpenAPI/Swagger)
 - **Async Web Development**: Async endpoints, background tasks, WebSockets
-- **Testing Web Applications**: pytest for APIs, test clients, mocking
+- **Testing Web Applications**: pytest for APIs, test clients, database mocking
 - **Deployment**: Docker, environment variables, production configurations
-- **Real-World Projects**: Blog API, Todo application, E-commerce backend
+- **Real-World Projects**: Blog API with database, File upload service, Todo app, Data pipeline with API integration
 
 **Key Concepts:**
+- File operations and context managers
+- Working with structured data (CSV, JSON, Excel)
+- Consuming external APIs
 - Building production-ready REST APIs
-- Request handling and response formatting
-- Database integration patterns
+- Database design and ORM patterns
 - Authentication and authorization
-- API documentation (OpenAPI/Swagger)
+- Request/response handling
 - Error handling and validation
-- Deployment strategies
+- Testing and deployment strategies
 
-**Suitable for:** Developers wanting to build web applications, API development, backend engineering, full-stack development
+**Suitable for:** Anyone building backend systems, web applications, APIs, or data-driven applications. This topic combines three essential skills that work together in real-world development.
 
 ---
 
@@ -154,18 +161,7 @@ Learn to build modern web applications and REST APIs with Python. This comprehen
 
 ### Topics 6-7 (Planned and In Development)
 
-**Topic 6: Working with Files, Data, and Databases**
-- File I/O in depth (reading, writing, modes, binary files)
-- Working with CSV and Excel files
-- JSON and data serialization (JSON, pickle, YAML)
-- Working with APIs and HTTP requests
-- File paths and directory operations (os, pathlib)
-- Context managers and the `with` statement
-- **Database Fundamentals**: SQLite basics, SQL queries, database design
-- **ORMs**: Introduction to SQLAlchemy and database abstraction
-- Data persistence patterns
-
-**Topic 7: Advanced Python Features**
+**Topic 6: Advanced Python Features**
 - Decorators (function and class decorators)
 - Generators and `yield` keyword
 - Context managers (creating custom ones)
@@ -177,7 +173,7 @@ Learn to build modern web applications and REST APIs with Python. This comprehen
 - **Async/Await and Concurrency**: asyncio, async patterns, threading vs multiprocessing
 - **Performance Optimization**: Profiling, optimization techniques, memory management
 
-**Topic 8: Testing, Packaging, and Professional Python**
+**Topic 7: Testing, Packaging, and Professional Python**
 - Unit testing with pytest
 - Test-driven development (TDD) basics
 - Mocking and fixtures
