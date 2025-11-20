@@ -7,12 +7,13 @@ A comprehensive guide to understanding LLM application architecture, covering bo
 ## Table of Contents
 
 1. [Overview: LLM Application Architecture](#overview-llm-application-architecture)
-2. [Traditional Approach: LangChain Architecture](#traditional-approach-langchain-architecture)
-3. [Modern Approach: MCP (Model Context Protocol)](#modern-approach-mcp-model-context-protocol)
-4. [Complete Message Flow: User Input to Response](#complete-message-flow-user-input-to-response)
-5. [Comparison: LangChain vs MCP](#comparison-langchain-vs-mcp)
-6. [Real-World Implementation Examples](#real-world-implementation-examples)
-7. [When to Use Each Approach](#when-to-use-each-approach)
+2. [Understanding LLM Applications: The Basics](#understanding-llm-applications-the-basics)
+3. [Traditional Approach: LangChain Architecture](#traditional-approach-langchain-architecture)
+4. [Modern Approach: MCP (Model Context Protocol)](#modern-approach-mcp-model-context-protocol)
+5. [Complete Message Flow: User Input to Response](#complete-message-flow-user-input-to-response)
+6. [Comparison: LangChain vs MCP](#comparison-langchain-vs-mcp)
+7. [Real-World Implementation Examples](#real-world-implementation-examples)
+8. [When to Use Each Approach](#when-to-use-each-approach)
 
 ---
 
@@ -26,7 +27,178 @@ An LLM (Large Language Model) application is a system that uses AI models like G
 3. Calling external tools (APIs, databases, etc.)
 4. Generating contextually aware responses
 
+---
+
+### Understanding LLM Applications Flow
+
+**User asks:** "What's our refund policy?"
+
+Here's the complete flow step-by-step:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    BASIC RAG FLOW                                │
+└─────────────────────────────────────────────────────────────────┘
+
+User Input: "What's our refund policy?"
+    │
+    ↓
+┌───────────────────┐
+│  1. API Gateway   │  Check auth, rate limits
+└────────┬──────────┘
+         ↓
+┌───────────────────┐
+│  2. FastAPI       │  Receive request
+└────────┬──────────┘
+         ↓
+┌───────────────────────────────────────────────────────────────┐
+│  3. RAG Pipeline                                              │
+│     (Provide additional info to model that's not in          │
+│      training data - like your company's refund policy)      │
+│                                                               │
+│  Step A: Convert question to embedding (vector)              │
+│    Input: "What's our refund policy?"                        │
+│    ↓ Call OpenAI Embeddings API                              │
+│    Output: [0.023, -0.145, 0.678, ..., 0.234]                │
+│            (1536 numbers representing the question)           │
+│                                                               │
+│  Step B: Search Vector Database                              │
+│    Query: [0.023, -0.145, ...]                               │
+│    ↓ Search Pinecone for similar document vectors            │
+│    Output: Top 3 matching documents                          │
+│      - "Refund policy: 30 days..." (similarity: 0.95)        │
+│      - "Return process: Contact..." (similarity: 0.87)       │
+│      - "Warranty info..." (similarity: 0.75)                 │
+│                                                               │
+│  Step C: Build prompt with retrieved context                 │
+│    System: "You are a helpful assistant"                     │
+│    Context: [Retrieved documents text]                       │
+│    Question: "What's our refund policy?"                     │
+│                                                               │
+└────────┬──────────────────────────────────────────────────────┘
+         ↓
+┌───────────────────┐
+│  4. Call LLM      │  Send prompt to OpenAI GPT-4
+│  (GPT-4)          │  LLM generates answer using context
+└────────┬──────────┘
+         ↓
+┌───────────────────┐
+│  5. Return        │  "Our refund policy allows returns
+│  Response         │   within 30 days of purchase..."
+└───────────────────┘
+```
+
+### Simple Python Example
+
+```python
+from fastapi import FastAPI
+import openai
+import pinecone
+
+app = FastAPI()
+
+# Initialize services
+openai.api_key = "your-openai-key"
+pinecone.init(api_key="your-pinecone-key", environment="us-west1-gcp")
+index = pinecone.Index("company-docs")
+
+@app.post("/chat")
+async def chat(question: str):
+    """
+    Basic RAG implementation - all steps manual
+    
+    RAG (Retrieval Augmented Generation) helps the LLM answer questions
+    about YOUR data (company policies, products, etc.) that weren't 
+    part of its training data.
+    """
+    
+    # ═══════════════════════════════════════════════════════════
+    # STEP 1: Convert question to embedding (vector)
+    # ═══════════════════════════════════════════════════════════
+    embedding_response = openai.Embedding.create(
+        model="text-embedding-ada-002",
+        input=question
+    )
+    question_embedding = embedding_response['data'][0]['embedding']
+    # Result: [0.023, -0.145, 0.678, ..., 0.234] (1536 numbers)
+    
+    # ═══════════════════════════════════════════════════════════
+    # STEP 2: Search your vector database for similar documents
+    # ═══════════════════════════════════════════════════════════
+    search_results = index.query(
+        vector=question_embedding,
+        top_k=3,  # Get top 3 most similar documents
+        include_metadata=True
+    )
+    
+    # Extract document text from search results
+    retrieved_docs = []
+    for match in search_results['matches']:
+        doc_text = match['metadata']['text']
+        retrieved_docs.append(doc_text)
+    
+    # ═══════════════════════════════════════════════════════════
+    # STEP 3: Build prompt with context
+    # ═══════════════════════════════════════════════════════════
+    context = "\n\n".join(retrieved_docs)
+    prompt = f"""
+You are a helpful assistant. Answer the question based ONLY on the context below.
+
+Context:
+{context}
+
+Question: {question}
+
+Answer:
+"""
+    
+    # ═══════════════════════════════════════════════════════════
+    # STEP 4: Call LLM with the prompt
+    # ═══════════════════════════════════════════════════════════
+    llm_response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.7
+    )
+    
+    # ═══════════════════════════════════════════════════════════
+    # STEP 5: Extract and return the answer
+    # ═══════════════════════════════════════════════════════════
+    answer = llm_response.choices[0].message.content
+    
+    return {
+        "answer": answer,
+        "sources": [match['id'] for match in search_results['matches']]
+    }
+
+# To run: uvicorn main:app --reload
+```
+
+**What this code does:**
+1. Takes a user question about YOUR company data (e.g., "What's our refund policy?")
+2. Converts it to a vector (1536 numbers) using OpenAI embeddings
+3. Searches Pinecone vector database for similar documents from YOUR company
+4. Takes the top 3 matching documents (this is the "Retrieval" part of RAG)
+5. Builds a prompt with those documents as context (this is the "Augmented" part)
+6. Sends prompt to GPT-4 (this is the "Generation" part)
+7. Returns GPT-4's answer **based on your company data, not just what it was trained on**
+
+**Why RAG is important:** GPT-4 was trained on public internet data up to a certain date. It doesn't know YOUR company's refund policy, product details, or internal processes. RAG provides this information so the LLM can answer accurately.
+
+---
+
 ### High-Level Architecture
+
+Now that you've seen the basic approach, let's see how **frameworks** (LangChain) and **protocols** (MCP) does the same and more complext thing with less boilerplate codes.
+
+**What these tools do:**
+- **LangChain:** Provides pre-built components (chains, agents) that handle the RAG pipeline automatically
+- **MCP:** Provides standardized servers for tools, so you don't write integration code
+
+The diagram below shows the complete architecture using these frameworks:
 
 ```mermaid
 flowchart TB
@@ -110,7 +282,7 @@ flowchart TB
 
 ---
 
-## Traditional Approach: LangChain Architecture
+## LangChain Approach:
 
 ### What is LangChain?
 
