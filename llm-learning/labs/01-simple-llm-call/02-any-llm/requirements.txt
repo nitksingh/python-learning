@@ -1,0 +1,28 @@
+# Core dependencies
+python-dotenv>=1.0.0
+
+# LangChain framework - use compatible versions
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-community>=0.0.10
+
+# Provider-specific packages (install only what you need)
+# Uncomment the ones you want to use:
+
+# Google Gemini (free tier available)
+langchain-google-genai>=0.0.6
+
+# OpenAI (requires API key)
+langchain-openai>=0.0.5
+
+# Anthropic Claude (requires API key)
+langchain-anthropic>=0.0.2
+
+# Groq (free tier available)
+langchain-groq>=0.0.1
+
+# Ollama (local models - free)
+langchain-ollama>=0.1.0
+
+# Note: All provider packages will be installed by default
+# Comment out the ones you don't need to speed up installation

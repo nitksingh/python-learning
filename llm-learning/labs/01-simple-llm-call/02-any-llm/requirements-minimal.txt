@@ -1,0 +1,8 @@
+# Minimal requirements - let pip resolve versions
+python-dotenv
+langchain
+langchain-google-genai
+langchain-openai
+langchain-anthropic
+langchain-groq
+
