@@ -11,6 +11,7 @@ Learn how to make your first API calls to LLMs (Large Language Models).
 - Conversation history management
 - Working with different LLM providers
 - LangChain framework
+- Local model deployment and serving 
 
 ---
 
